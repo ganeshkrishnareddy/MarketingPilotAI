@@ -11,7 +11,7 @@ try {
 
 if (!content.includes('AI_API_BASE_URL')) {
     content += '\nAI_API_BASE_URL="https://openrouter.ai/api/v1"\n';
-    content += 'AI_API_KEY="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"\n';
+    content += 'AI_API_KEY="YOUR_OPENROUTER_API_KEY_HERE"\n';
     content += 'AI_MODEL="meta-llama/llama-3.1-8b-instruct:free"\n';
     fs.writeFileSync('.env.local', content, 'utf8');
     console.log('Updated .env.local');
