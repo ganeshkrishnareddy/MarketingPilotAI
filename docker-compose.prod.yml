@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # ─── PocketBase Database ───────────────────────────────
+  pocketbase:
+    image: pocketbase/pocketbase:latest
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./pocketbase/pb_data:/pb/pb_data
+      - ./pocketbase/pb_migrations:/pb/pb_migrations
+    command: serve --http=0.0.0.0:8090
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8090/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ─── Next.js Frontend ──────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_PB_URL: ${NEXT_PUBLIC_PB_URL:-http://localhost:8090}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-https://vision360aisolutions.in}
+        NEXT_PUBLIC_APP_NAME: "V360 AI Agency"
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # PocketBase
+      - NEXT_PUBLIC_PB_URL=${NEXT_PUBLIC_PB_URL:-http://pocketbase:8090}
+      # AI Providers (server-side only)
+      - AI_API_BASE_URL=${AI_API_BASE_URL:-https://openrouter.ai/api/v1}
+      - AI_API_KEY=${AI_API_KEY}
+      - AI_MODEL=${AI_MODEL:-openrouter/free}
+      - OPENCODE_API_BASE_URL=${OPENCODE_API_BASE_URL:-https://opencode.ai/zen/v1}
+      - OPENCODE_API_KEY=${OPENCODE_API_KEY}
+      - OPENCODE_MODEL=${OPENCODE_MODEL:-mimo-v2.5-free}
+      # Voice AI
+      - DEEPGRAM_API_KEY=${DEEPGRAM_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - RUMIK_API_KEY=${RUMIK_API_KEY}
+      # WhatsApp
+      - WHATSAPP_TEMPLATE_NAME=${WHATSAPP_TEMPLATE_NAME:-hello_world}
+      # Email
+      - SMTP_HOST=${SMTP_HOST:-smtp.zoho.in}
+      - SMTP_PORT=${SMTP_PORT:-465}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - EMAIL_FROM=${EMAIL_FROM}
+      # PocketBase admin
+      - POCKETBASE_ADMIN_EMAIL=${POCKETBASE_ADMIN_EMAIL:-admin@vision360.ai}
+      - POCKETBASE_ADMIN_PASSWORD=${POCKETBASE_ADMIN_PASSWORD:-Vision@360}
+    depends_on:
+      pocketbase:
+        condition: service_healthy
+
+  # ─── n8n Automation Engine ─────────────────────────────
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-n8n.localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - NODE_ENV=production
+      - WEBHOOK_URL=${WEBHOOK_URL:-https://n8n.localhost}
+      - GENERIC_TIMEZONE=Asia/Kolkata
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

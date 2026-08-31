@@ -1,0 +1,8 @@
+FROM dockprom/pocketbase:latest
+
+EXPOSE 8090
+
+# Copy migrations if they exist
+COPY pocketbase/pb_migrations/ /pb/pb_migrations/
+
+CMD ["serve", "--http=0.0.0.0:8090"]

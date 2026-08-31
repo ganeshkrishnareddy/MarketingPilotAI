@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProgVision Technical Proposal - MarketingPilot AI</title>
+  <style>
+    :root{
+      --ink:#1f2937; --muted:#5b6472; --blue:#1e40af; --blue2:#2563eb; --line:#cbd5e1; --soft:#f8fafc; --accent:#eef4ff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#e5e7eb;font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+    .page{width:210mm;min-height:297mm;margin:0 auto;background:#fff;padding:16mm 16mm 15mm;position:relative}
+    .header,.footer{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .header{padding-bottom:6mm;border-bottom:1px solid var(--line);margin-bottom:8mm}
+    .footer{margin-top:8mm;border-top:1px solid var(--line);padding-top:4mm;font-size:10px;color:var(--muted)}
+    .brandwrap{display:flex;align-items:center;gap:10px}
+    .logo{width:15mm;height:15mm;border-radius:999px;object-fit:cover;border:1px solid #d5dbea;background:#fff}
+    .brand{font-size:18px;font-weight:700;color:#17385f}
+    .meta{text-align:right;font-size:10.5px;line-height:1.45;color:var(--muted)}
+    .eyebrow{display:inline-block;padding:5px 10px;border-radius:999px;background:#e0ecff;color:#0f3d91;font-size:10px;font-weight:700;letter-spacing:.2px}
+    h1{font-size:27px;line-height:1.15;margin:8mm 0 2mm;color:#17385f}
+    h2{font-size:17px;line-height:1.25;margin:8mm 0 3mm;color:var(--blue)}
+    h3{font-size:12px;line-height:1.25;margin:0 0 2mm;color:#17385f}
+    .sub{font-size:12px;color:var(--muted);margin-bottom:4mm}
+    .lead{font-size:12px;line-height:1.62;margin:0 0 2mm}
+    .card{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+    table{width:100%;border-collapse:collapse;margin:4mm 0 3mm;page-break-inside:auto}
+    tr{page-break-inside:avoid;page-break-after:auto}
+    th,td{border:1px solid var(--line);padding:12px 14px;vertical-align:top;font-size:11.5px;line-height:1.55;text-align:left}
+    th{background:var(--blue);color:#fff;font-size:12px}
+    .label{background:var(--accent);font-weight:700;width:22%}
+    .stack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .stack-item{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;page-break-inside:avoid}
+    .stack-item .tech{font-weight:700;font-size:13px;margin-bottom:5px;color:#17385f}
+    .stack-item .purpose{font-size:10.5px;color:var(--muted);margin-bottom:5px}
+    .stack-item .why{font-size:10px;line-height:1.45}
+    .stack-item .meta-line{font-size:10px;color:var(--muted);margin-top:4px}
+    .split{display:grid;grid-template-columns:1fr;gap:12px}
+    .summary-box{border:1px solid #c8d7ea;background:linear-gradient(180deg,#f7fbff,#edf4fb);padding:12px 14px;border-radius:12px}
+    .summary-amt{font-size:20px;font-weight:700;margin-top:2px}
+    .section-note{font-size:11px;color:var(--muted);line-height:1.55;margin:0 0 3mm}
+    .quote-table td:first-child{font-weight:700;width:20%}
+    .quote-table td:nth-child(2){width:24%}
+    .quote-table td:nth-child(3){width:16%;white-space:nowrap}
+    .quote-table td:nth-child(4){width:40%}
+    .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .flowcard{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+    .phase{font-weight:700;color:#17385f;margin-bottom:4px}
+    .divider{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:95mm;padding:14mm 8mm;text-align:center}
+    .divider .icon{font-size:30px;margin-bottom:10px}
+    .divider .title{font-size:24px;font-weight:700;color:#17385f;margin-bottom:6px}
+    .divider .desc{font-size:12px;color:var(--muted);max-width:135mm;line-height:1.6}
+    .pagebreak{page-break-before:always}
+    .toc td:nth-child(2){text-align:right;width:15%}
+    .pricing-grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media print{
+      body{background:#fff}
+      .page{margin:0;min-height:auto}
+    }
+  </style>
+</head>
+<body>
+
+  <section class="page">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">
+        MarketingPilot AI Technical Proposal<br/>
+        Version 1.0<br/>
+        Confidential
+      </div>
+    </div>
+
+    <div class="eyebrow">Confidential</div>
+    <h1>MarketingPilot AI Technical Proposal</h1>
+    <div class="sub">Professional software development report for client review, investor sharing, and implementation planning</div>
+    <p class="lead">This proposal describes the full technical shape of the MarketingPilot AI platform, including product scope, technology stack, architecture, infrastructure, deployment path, services, cost structure, and post-launch operations.</p>
+    <p class="lead">The starter phase is planned as a lean launch package at <strong>INR 10,000 to INR 15,000</strong>. The goal is to build a clean, credible foundation first and expand into the full SaaS in later phases.</p>
+    <p class="lead">Website: https://progvision.online/ | Support: support@progvision.online</p>
+
+    <table>
+      <tr><td class="label">Client</td><td>MarketingPilot AI / ProgVision</td></tr>
+      <tr><td class="label">Objective</td><td>Centralized AI marketing platform with content, CRM, WhatsApp, email, SEO, ads, and automation</td></tr>
+      <tr><td class="label">Prepared by</td><td>ProgVision</td></tr>
+      <tr><td class="label">Document control</td><td>Version 1.0 | Date: 21 July 2026 | Confidential</td></tr>
+    </table>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 1</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>Table of Contents</h2>
+    <table class="toc">
+      <tr><th>Section</th><th>Page</th></tr>
+      <tr><td>Executive Summary</td><td>3</td></tr>
+      <tr><td>Technology Stack</td><td>4</td></tr>
+      <tr><td>System Architecture</td><td>5</td></tr>
+      <tr><td>Development Scope</td><td>6</td></tr>
+      <tr><td>Infrastructure & Deployment</td><td>7</td></tr>
+      <tr><td>Third-Party Services</td><td>8</td></tr>
+      <tr><td>Development Cost</td><td>9</td></tr>
+      <tr><td>Post-Launch Running Cost</td><td>10</td></tr>
+      <tr><td>Deployment Process</td><td>11</td></tr>
+      <tr><td>Maintenance & Support</td><td>12</td></tr>
+      <tr><td>Timeline</td><td>13</td></tr>
+      <tr><td>Assumptions & Exclusions</td><td>14</td></tr>
+      <tr><td>Conclusion</td><td>15</td></tr>
+    </table>
+
+    <div class="divider">
+      <div class="icon">📘</div>
+      <div class="title">Executive Summary</div>
+      <div class="desc">This section introduces the platform, the target launch direction, and the deliverables that define the starter release.</div>
+    </div>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 2</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>1. Executive Summary</h2>
+    <p class="lead">MarketingPilot AI is positioned as a centralized AI marketing and automation platform that combines content creation, lead handling, CRM actions, email workflows, WhatsApp workflows, SEO support, ad assistance, and business automation in one product.</p>
+    <p class="lead">The starter phase creates a polished and trustworthy foundation. It covers the first visible product shell, brand presentation, core workflows, and the infrastructure needed to prove the concept before the full production version is funded.</p>
+    <table>
+      <tr><th>Item</th><th>Summary</th></tr>
+      <tr><td>Project overview</td><td>All-in-one SaaS for marketing operations, lead nurturing, and AI-assisted execution.</td></tr>
+      <tr><td>Objectives</td><td>Launch a credible starter release, validate the platform, and prepare for scale.</td></tr>
+      <tr><td>Scope</td><td>Landing page, login, admin shell, lead import, template library, integrations, and starter AI workflows.</td></tr>
+      <tr><td>Deliverables</td><td>Technical report, system architecture, infrastructure plan, cost sheet, timeline, and launch assumptions.</td></tr>
+    </table>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 3</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>2. Technology Stack</h2>
+    <table>
+      <tr><th style="width:22%">Layer</th><th style="width:24%">Technology</th><th>Purpose</th><th>Why selected</th></tr>
+      <tr><td>Frontend</td><td>▲ Next.js 15<br/>⚛️ React 19<br/>🟦 TypeScript 5<br/>🎨 Tailwind CSS 4<br/>🧩 shadcn/ui<br/>✨ Framer Motion</td><td>Server-rendered UI, routing, dashboard screens, and interactions</td><td>Modern, fast, SEO-friendly, and suitable for enterprise-grade web apps</td></tr>
+      <tr><td>Backend</td><td>🟨 Node.js runtime<br/>🧠 FastAPI / Express<br/>🔁 REST API<br/>⚙️ Background workers</td><td>Business logic, request handling, workflows, queues, and async jobs</td><td>Flexible enough for API-first SaaS development and automation</td></tr>
+      <tr><td>Database & Auth</td><td>🗄️ PocketBase<br/>🔐 Authentication layer<br/>📁 File storage</td><td>User accounts, session handling, records, and uploads</td><td>Lightweight for the starter phase and easy to operate at low cost</td></tr>
+      <tr><td>AI & Automation</td><td>🤖 Vercel AI SDK<br/>🌐 OpenRouter free models<br/>🧠 DeepSeek-R1<br/>🧠 Qwen<br/>🧠 Llama 3.1<br/>📚 RAG engine</td><td>Inference, content generation, business analysis, and knowledge retrieval</td><td>Supports low-cost AI usage while keeping provider flexibility</td></tr>
+      <tr><td>Cloud & Deployment</td><td>🐧 Ubuntu 24.04 LTS<br/>🌐 Nginx<br/>☁️ Cloudflare<br/>🔒 Let’s Encrypt<br/>🚀 GitHub Actions<br/>🧭 PM2</td><td>Server hosting, reverse proxy, SSL, CI/CD, and process management</td><td>Stable, standard, and widely used for production SaaS deployments</td></tr>
+      <tr><td>Email & Integrations</td><td>✉️ Zoho Mail / SMTP<br/>💬 WhatsApp API<br/>📣 Meta Ads<br/>🔎 Google Ads<br/>🔗 Webhooks</td><td>Invites, alerts, campaign delivery, and external system connections</td><td>Necessary for real client communication and operational automation</td></tr>
+    </table>
+
+    <div class="stack-grid">
+      <div class="stack-item"><div class="tech">⚛️ React 19</div><div class="purpose">Purpose: interactive user interface</div><div class="why">Reusable components and responsive screens for the app experience.</div><div class="meta-line">Version: 19</div></div>
+      <div class="stack-item"><div class="tech">▲ Next.js 15</div><div class="purpose">Purpose: SSR, routing, SEO</div><div class="why">Supports server-rendered pages, performance, and public SaaS visibility.</div><div class="meta-line">Version: 15</div></div>
+      <div class="stack-item"><div class="tech">🟦 TypeScript 5</div><div class="purpose">Purpose: type-safe development</div><div class="why">Reduces bugs and keeps the codebase maintainable as the product grows.</div><div class="meta-line">Version: 5</div></div>
+      <div class="stack-item"><div class="tech">🎨 Tailwind CSS 4</div><div class="purpose">Purpose: responsive styling system</div><div class="why">Consistent UI with fast iteration and clean layout control.</div><div class="meta-line">Version: 4</div></div>
+      <div class="stack-item"><div class="tech">🗄️ PocketBase</div><div class="purpose">Purpose: auth, database, file storage</div><div class="why">Keeps the starter infrastructure lightweight and cost-effective.</div><div class="meta-line">Version: latest stable</div></div>
+      <div class="stack-item"><div class="tech">🤖 OpenRouter free models</div><div class="purpose">Purpose: low-cost AI inference</div><div class="why">Launches with free or low-cost AI before moving to paid models.</div><div class="meta-line">Models: DeepSeek-R1, Qwen, Llama 3.1</div></div>
+      <div class="stack-item"><div class="tech">☁️ Cloudflare</div><div class="purpose">Purpose: DNS, SSL, CDN</div><div class="why">Improves security, caching, and delivery reliability at low cost.</div><div class="meta-line">Tier: free / paid as needed</div></div>
+      <div class="stack-item"><div class="tech">🐧 Ubuntu 24.04 LTS</div><div class="purpose">Purpose: production server OS</div><div class="why">Stable long-term Linux base for running the VPS and deployment services.</div><div class="meta-line">Version: 24.04 LTS</div></div>
+    </div>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 4</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>3. System Architecture</h2>
+    <div class="card">
+      <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:center">
+        <div class="card" style="text-align:center;background:#fff">Client<br/><strong>Browser / Mobile</strong></div>
+        <div style="text-align:center;font-weight:700;color:#94a3b8">→</div>
+        <div class="card" style="text-align:center;background:#eef4ff">Frontend<br/><strong>Next.js / React</strong></div>
+        <div style="text-align:center;font-weight:700;color:#94a3b8">→</div>
+        <div class="card" style="text-align:center;background:#fff">Backend<br/><strong>API + Logic</strong></div>
+        <div style="text-align:center;font-weight:700;color:#94a3b8">→</div>
+        <div class="card" style="text-align:center;background:#fff">Database<br/><strong>PocketBase / PostgreSQL</strong></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:center;margin-top:8px">
+        <div class="card" style="text-align:center;background:#fff">AI Engine<br/><strong>OpenRouter Models</strong></div>
+        <div style="text-align:center;font-weight:700;color:#94a3b8">→</div>
+        <div class="card" style="text-align:center;background:#fff">Integrations<br/><strong>Email / WhatsApp / Ads</strong></div>
+        <div style="text-align:center;font-weight:700;color:#94a3b8">→</div>
+        <div class="card" style="text-align:center;background:#fff">Deployment<br/><strong>VPS / SSL / Backups</strong></div>
+        <div style="text-align:center;font-weight:700;color:#94a3b8">→</div>
+        <div class="card" style="text-align:center;background:#fff">Monitoring<br/><strong>Logs / Alerts</strong></div>
+      </div>
+    </div>
+    <p class="section-note">Architecture flow: the client uses the frontend, the frontend communicates with backend APIs, the backend reads and writes to the database, AI services support generation and analysis, and integrations connect the app to email and external channels. Deployment is managed on a VPS with SSL, backups, and monitoring.</p>
+
+    <h2>4. Development Scope</h2>
+    <table>
+      <tr><th>Module</th><th>Features</th><th>Deliverables</th><th>Effort</th></tr>
+      <tr><td>Landing page</td><td>Hero, positioning, CTA, trust signals</td><td>Public marketing entry point</td><td>Low</td></tr>
+      <tr><td>Login and admin</td><td>Auth screens, role control, session handling</td><td>Secure access shell</td><td>Low</td></tr>
+      <tr><td>Lead import</td><td>CSV, Excel, manual rows, validation</td><td>Lead intake interface</td><td>Medium</td></tr>
+      <tr><td>CRM and workflow</td><td>Lead status, follow-up, tasks, notes</td><td>Starter CRM layer</td><td>Medium</td></tr>
+      <tr><td>Templates</td><td>Centralized email and WhatsApp templates</td><td>Message library + preview</td><td>Medium</td></tr>
+      <tr><td>AI modules</td><td>Content, SEO, ads, scripts, suggestions</td><td>AI-assisted workbench</td><td>Medium</td></tr>
+      <tr><td>Integrations</td><td>SMTP, WhatsApp, Meta, Google, webhooks</td><td>Integration setup pages</td><td>High</td></tr>
+    </table>
+
+    <div class="divider">
+      <div class="icon">⚙️</div>
+      <div class="title">Infrastructure & Deployment</div>
+      <div class="desc">The next section shows where the starter version runs, how the server is configured, and what monthly operational cost to expect after deployment.</div>
+    </div>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 5</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>5. Infrastructure & Deployment</h2>
+    <table>
+      <tr><th>Area</th><th>Plan</th><th>Notes</th></tr>
+      <tr><td>Hosting</td><td>Small VPS or cloud VM</td><td>App server, API, and runtime services in one controlled environment.</td></tr>
+      <tr><td>VPS specification</td><td>2 vCPU / 4 GB RAM to start</td><td>Enough for a lean starter release; upgrade if traffic grows.</td></tr>
+      <tr><td>Domain and SSL</td><td>Custom domain + Cloudflare / Let’s Encrypt SSL</td><td>Required for trust, security, and production use.</td></tr>
+      <tr><td>Database</td><td>PocketBase starter database</td><td>Simple to deploy now; can later move to PostgreSQL if needed.</td></tr>
+      <tr><td>Backup strategy</td><td>Automated daily backup job</td><td>Keep database, uploads, and config backups off-server.</td></tr>
+      <tr><td>CI/CD pipeline</td><td>Manual first, automated later</td><td>Git-based deploy flow can be added after the pilot stage.</td></tr>
+      <tr><td>Monitoring</td><td>Logs + uptime alerts</td><td>Track app health, mail failures, and API issues.</td></tr>
+      <tr><td>Security</td><td>HTTPS, access control, secrets management, rate limiting</td><td>Basic production safeguards for a public SaaS launch.</td></tr>
+    </table>
+
+    <h2>6. Third-Party Services</h2>
+    <table>
+      <tr><th>Service</th><th>Purpose</th><th>Free / Paid</th><th>Monthly cost</th><th>Required?</th></tr>
+      <tr><td>PocketBase</td><td>Starter database, auth, and file storage</td><td>Free</td><td>INR 0</td><td>Yes</td></tr>
+      <tr><td>OpenRouter</td><td>Free AI model access for generation</td><td>Free tier</td><td>INR 0 - INR 2,000</td><td>Yes</td></tr>
+      <tr><td>Zoho Mail / SMTP</td><td>Business email, invitations, alerts</td><td>Paid or bundled</td><td>INR 500 - INR 2,000</td><td>Yes</td></tr>
+      <tr><td>Cloudflare</td><td>DNS, SSL, caching, protection</td><td>Free / Paid</td><td>INR 0 - INR 1,500</td><td>Recommended</td></tr>
+      <tr><td>VPS Hosting</td><td>Runs frontend, backend, and services</td><td>Paid</td><td>INR 1,500 - INR 5,000</td><td>Yes</td></tr>
+      <tr><td>Domain</td><td>Public site and app identity</td><td>Paid</td><td>INR 80 - INR 200 monthly equivalent</td><td>Yes</td></tr>
+      <tr><td>Monitoring tools</td><td>Uptime and log review</td><td>Free / Paid</td><td>INR 500 - INR 2,000</td><td>Recommended</td></tr>
+    </table>
+
+    <h2>7. Development Cost</h2>
+    <table>
+      <tr><th>Area</th><th>Estimated cost</th></tr>
+      <tr><td>UI/UX</td><td>INR 2,000 - INR 3,000</td></tr>
+      <tr><td>Backend</td><td>INR 2,000 - INR 3,000</td></tr>
+      <tr><td>AI Engine</td><td>INR 1,500 - INR 2,500</td></tr>
+      <tr><td>CRM</td><td>INR 1,000 - INR 2,000</td></tr>
+      <tr><td>Automation</td><td>INR 1,500 - INR 2,500</td></tr>
+      <tr><td>Testing</td><td>INR 1,000 - INR 1,500</td></tr>
+      <tr><td>Deployment</td><td>INR 1,000 - INR 1,500</td></tr>
+      <tr><td>Documentation</td><td>INR 500 - INR 1,000</td></tr>
+    </table>
+    <div class="summary-box">
+      <div class="sub" style="margin:0;color:var(--blue);font-weight:700">Starter development budget</div>
+      <div class="summary-amt">INR 10,000 - INR 15,000</div>
+      <div class="sub" style="margin-top:2mm">This budget covers the starter release only. Larger production scope will require a separate estimate.</div>
+    </div>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 6</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>8. Post-Launch Running Cost</h2>
+    <table>
+      <tr><th>Cost item</th><th>Expected monthly cost</th><th>Comment</th></tr>
+      <tr><td>Hosting</td><td>INR 1,500 - INR 5,000</td><td>Server, app runtime, and storage.</td></tr>
+      <tr><td>Database</td><td>INR 0 - INR 2,000</td><td>PocketBase starter or managed DB later.</td></tr>
+      <tr><td>AI usage</td><td>INR 0 - INR 2,000</td><td>Free model usage plus growth margin.</td></tr>
+      <tr><td>Email service</td><td>INR 500 - INR 2,000</td><td>SMTP or Zoho Mail for production mail.</td></tr>
+      <tr><td>Domain renewal</td><td>INR 80 - INR 200 monthly equivalent</td><td>Annual renewal averaged monthly.</td></tr>
+      <tr><td>Monitoring and backup</td><td>INR 500 - INR 2,000</td><td>Logs, uptime checks, backups, alerts.</td></tr>
+      <tr><td>Maintenance</td><td>INR 1,000 - INR 3,000</td><td>Bug fixes, support, and minor updates.</td></tr>
+    </table>
+
+    <h2>9. Deployment Process</h2>
+    <div class="flow">
+      <div class="flowcard"><div class="phase">Phase 1</div>Develop the UI, backend, and core workflows locally.</div>
+      <div class="flowcard"><div class="phase">Phase 2</div>Connect database, email, AI, and integration services.</div>
+      <div class="flowcard"><div class="phase">Phase 3</div>Deploy to VPS, enable SSL, configure domain and DNS.</div>
+      <div class="flowcard"><div class="phase">Phase 4</div>Run testing, monitoring, backups, and production checks.</div>
+    </div>
+
+    <h2>10. Maintenance & Support</h2>
+    <table>
+      <tr><th>Plan</th><th>Coverage</th><th>Typical monthly cost</th></tr>
+      <tr><td>Basic support</td><td>Bug fixes, small updates, and health checks</td><td>INR 1,000 - INR 3,000</td></tr>
+      <tr><td>Standard support</td><td>Monitoring, backups, fixes, and feature touch-ups</td><td>INR 3,000 - INR 7,000</td></tr>
+      <tr><td>AMC / growth support</td><td>Ongoing enhancements, new modules, and operational follow-up</td><td>Custom</td></tr>
+    </table>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 7</div>
+    </div>
+  </section>
+
+  <section class="page pagebreak">
+    <div class="header">
+      <div class="brandwrap">
+        <img class="logo" src="file:///D:/WebApps/progvision/public/images/logo.jpeg" alt="ProgVision logo" />
+        <div class="brand">ProgVision</div>
+      </div>
+      <div class="meta">MarketingPilot AI Technical Proposal<br/>Version 1.0<br/>Confidential</div>
+    </div>
+
+    <h2>11. Timeline</h2>
+    <table>
+      <tr><th>Phase</th><th>Duration</th><th>Outcome</th></tr>
+      <tr><td>Phase 1</td><td>2 - 3 days</td><td>Scope, branding, layout, and technical planning</td></tr>
+      <tr><td>Phase 2</td><td>4 - 6 days</td><td>UI, login, dashboard, lead import, and template shells</td></tr>
+      <tr><td>Phase 3</td><td>3 - 5 days</td><td>Integrations, AI wiring, deployment, and tests</td></tr>
+      <tr><td>Phase 4</td><td>1 - 2 days</td><td>Polish, handover, and report finalization</td></tr>
+    </table>
+
+    <h2>12. Assumptions & Exclusions</h2>
+    <table>
+      <tr><th>Included</th><th>Optional / not included yet</th></tr>
+      <tr>
+        <td>Starter SaaS shell, base workflows, infrastructure planning, technical report, and launch-ready presentation.</td>
+        <td>High-scale AI usage, advanced WhatsApp automation, heavy paid ads integration, large production infrastructure, and custom enterprise SLAs.</td>
+      </tr>
+    </table>
+
+    <h2>13. Conclusion</h2>
+    <p class="lead">MarketingPilot AI can be launched as a polished starter product within a lean budget if the first release stays focused on the core user journey and the infrastructure remains intentionally lightweight. The platform is designed to scale later into a complete AI marketing suite with CRM, automation, ads, SEO, and communication workflows.</p>
+    <p class="lead">This report gives a client or investor clear visibility into the architecture, technology stack, deployment path, operational cost, and growth roadmap.</p>
+
+    <div class="footer">
+      <div>© 2026 ProgVision | https://progvision.online/</div>
+      <div>support@progvision.online | Page 8</div>
+    </div>
+  </section>
+
+</body>
+</html>
